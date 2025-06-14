@@ -1,17 +1,59 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, Linkedin, Github } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const ContactSection: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Basic form submission logic (e.g., log to console or use a service like Formspree)
-    // For now, we'll just prevent default and perhaps show a toast message.
-    alert("Thank you for your message! I'll be in touch soon. (Form functionality is currently a placeholder.)");
-    // Consider using `toast()` from shadcn if available and configured.
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const templateParams = {
+      from_name: formData.get('name') as string,
+      from_email: formData.get('email') as string,
+      message: formData.get('message') as string,
+      to_name: 'Yonatan Teklemariam',
+    };
+
+    console.log('Sending email with params:', templateParams);
+
+    try {
+      const result = await emailjs.send(
+        'service_e3g03d7', // Service ID
+        'template_jt3dwfv', // Template ID
+        templateParams,
+        'xkYZW8H5Cvrcz4Zue' // Public Key
+      );
+
+      console.log('Email sent successfully:', result);
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message! I'll get back to you soon.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -26,18 +68,24 @@ const ContactSection: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-lg shadow-xl animate-fade-in-up">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">Full Name</label>
-              <Input type="text" id="name" name="name" required placeholder="Your Name" />
+              <Input type="text" id="name" name="name" required placeholder="Your Name" disabled={isSubmitting} />
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">Email Address</label>
-              <Input type="email" id="email" name="email" required placeholder="your.email@example.com" />
+              <Input type="email" id="email" name="email" required placeholder="your.email@example.com" disabled={isSubmitting} />
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">Message</label>
-              <Textarea id="message" name="message" rows={5} required placeholder="Your message..." />
+              <Textarea id="message" name="message" rows={5} required placeholder="Your message..." disabled={isSubmitting} />
             </div>
             <div>
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Send Message</Button>
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" 
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
             </div>
           </form>
 
