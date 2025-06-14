@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button'; // Assuming shadcn button is available
-import { ArrowRight, UserCircle } from 'lucide-react'; // UserCircle as placeholder
+import { ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -30,13 +30,11 @@ const Hero: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center animate-fade-in-up animation-delay-300">
-            {/* Placeholder for Yonatan's portrait */}
-            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-muted flex items-center justify-center border-4 border-primary shadow-2xl">
-              <UserCircle size={128} className="text-primary" />
-            </div>
-             {/* You can replace this div with an <img> tag once you have Yonatan's photo.
-                 Example: <img src="/path/to/yonatan-portrait.jpg" alt="Yonatan Teklemariam" className="rounded-full w-96 h-96 object-cover border-4 border-primary shadow-2xl" /> 
-             */}
+            <img 
+              src="https://i.postimg.cc/N0TbjFMs/IMG20250502193529.jpg" 
+              alt="Yonatan Teklemariam" 
+              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full object-cover border-4 border-primary shadow-2xl" 
+            />
           </div>
         </div>
       </div>
