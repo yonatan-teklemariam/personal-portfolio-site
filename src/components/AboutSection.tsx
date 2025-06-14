@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GraduationCap, Briefcase, Users, Zap, Brain, Award, UserCircle } from 'lucide-react'; // UserCircle as placeholder
+import { GraduationCap, Briefcase, Users, Zap, Brain, Award } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   const softSkills = [
@@ -21,11 +21,11 @@ const AboutSection: React.FC = () => {
 
         <div className="grid md:grid-cols-5 gap-12 items-start">
           <div className="md:col-span-2 flex justify-center animate-fade-in-up">
-            {/* Placeholder for another Yonatan's portrait or relevant image */}
-            <div className="w-56 h-56 sm:w-72 sm:h-72 rounded-lg bg-muted flex items-center justify-center border-4 border-primary shadow-xl">
-              <UserCircle size={96} className="text-primary" />
-            </div>
-            {/* Replace with <img src="/path/to/another-yonatan-photo.jpg" alt="Yonatan Teklemariam" className="rounded-lg w-72 h-72 object-cover" /> */}
+            <img 
+              src="/lovable-uploads/adacc3b1-b530-407c-b02b-d81f85af77d0.png" 
+              alt="Yonatan Teklemariam" 
+              className="w-56 h-56 sm:w-72 sm:h-72 rounded-lg object-cover border-4 border-primary shadow-xl" 
+            />
           </div>
 
           <div className="md:col-span-3 space-y-8 animate-fade-in-up animation-delay-200">
