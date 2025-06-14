@@ -5,7 +5,7 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-gray-900 text-muted-foreground py-12">
+    <footer className="c-site-footer bg-gray-900 text-muted-foreground py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex justify-center space-x-6 mb-6">
           <a href="https://linkedin.com/in/yonatanteklemariam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors">

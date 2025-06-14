@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BarChart3, ShieldCheck, Leaf, Zap, Code2 } from 'lucide-react'; // Example icons
+import { BarChart3, ShieldCheck, Leaf, Zap, Code2, Play } from 'lucide-react'; // Added Play icon
 
 const agriculturalSuccess = {
   title: 'Agricultural Output Optimization (2021)',
@@ -45,6 +45,28 @@ const PortfolioSection: React.FC = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Video Section */}
+        <div className="mb-16 p-8 bg-card rounded-xl shadow-2xl animate-fade-in-up">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-semibold text-foreground mb-3">My Journey: From Agriculture to Tech</h3>
+            <p className="text-muted-foreground">Watch this video to learn more about my background and passion for bridging agriculture and technology.</p>
+          </div>
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-2xl">
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Yonatan Teklemariam - Agricultural Journey"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="rounded-lg shadow-lg"
+              ></iframe>
             </div>
           </div>
         </div>
